@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="2ed25c78fe0cc207b7a0b564023e5b1d8a8b134e">
+        <dex dex="C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_ef047ad3d1fb0ca25cc5d801c7509dc126817b91\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a033fb8d3a48221b57d1e747bef96941053e585f">
+        <dex dex="C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_8f8a24e8b417887a8a769949404556ab2cf40093\classes.dex" />
+    </item>
+
+</items>

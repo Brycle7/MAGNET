@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+     <item android:id="@+id/file"
+         	android:icon="@drawable/ic_menu"
+          	android:title="@string/file" 
+          	android:showAsAction="always">
+            <menu>
+         
+    		<item
+        		android:id="@+id/atn_direct_enable"
+        		android:icon="@drawable/ic_action_on_off"
+        		android:title="@string/enable_p2p_button"
+        		android:showAsAction="ifRoom|withText" />
+      
+    		<item
+        		android:id="@+id/atn_info"
+        		android:icon="@drawable/ic_info"
+        		android:title="@string/ic_info_button"
+        		android:showAsAction="ifRoom|withText" />
+    
+   			<item
+        		android:id="@+id/atn_intention"
+        		android:icon="@drawable/ic_intention"
+        		android:title="@string/ic_intention_button"
+        		android:showAsAction="ifRoom|withText" />
+   			    		
+    		<item
+        		android:id="@+id/atn_creategroup"
+        		android:icon="@drawable/ic_creategroup"
+        		android:title="@string/ic_creategroup"
+        		android:showAsAction="ifRoom|withText" />
+    		<item
+        		android:id="@+id/atn_removeGroup"
+        		android:icon="@drawable/ic_removegroup"
+        		android:title="@string/ic_removeGroup"
+        		android:showAsAction="ifRoom|withText" />
+    		   			
+    		<item
+        		android:id="@+id/atn_clear"
+        		android:icon="@drawable/ic_clear"
+        		android:title="@string/ic_clear"
+        		android:showAsAction="ifRoom|withText" />
+    		
+    		<item
+        		android:id="@+id/atn_sendtest"
+        		android:icon="@drawable/ic_sendtest"
+        		android:title="@string/ic_sendtest"
+        		android:showAsAction="ifRoom|withText" />
+    		
+    		<item
+        		android:id="@+id/atn_updatefragment"
+        		android:icon="@drawable/ic_updatefragment"
+        		android:title="@string/ic_updatefragment"
+        		android:showAsAction="ifRoom|withText" />
+    		
+    		<item
+        		android:id="@+id/atn_reserdiscovery"
+        		android:icon="@drawable/ic_service_discovery"
+        		android:title="@string/ic_reserdiscovery"
+        		android:showAsAction="ifRoom|withText" />
+    		
+    		<item
+        		android:id="@+id/atn_exit"
+        		android:icon="@drawable/ic_exit"
+        		android:title="@string/ic_exit"
+        		android:showAsAction="ifRoom|withText" />
+
+    		</menu>
+    	</item>
+            
+</menu>

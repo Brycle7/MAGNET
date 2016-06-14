@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\build\\intermediates\\res\\merged\\debug\\menu\\action_items.xml",
+        "source": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\src\\main\\res\\menu\\action_items.xml"
+    },
+    {
+        "merged": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\build\\intermediates\\res\\merged\\debug\\menu\\device_info.xml",
+        "source": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\src\\main\\res\\menu\\device_info.xml"
+    },
+    {
+        "merged": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\build\\intermediates\\res\\merged\\debug\\menu\\intention_proc.xml",
+        "source": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\src\\main\\res\\menu\\intention_proc.xml"
+    }
+]
