@@ -6,6 +6,7 @@ import android.net.wifi.WifiManager;
 
 import java.io.*;
 import java.net.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import org.apache.http.conn.util.InetAddressUtils;
@@ -98,7 +99,7 @@ public class Utils {
 
 	/**
 	 * Get IP address from first non-localhost interface
-	 * @param ipv4  true=return ipv4, false=return ipv6
+	 * //@param ipv4  true=return ipv4, false=return ipv6
 	 * @return  address or empty string
 	 */
 	public static String getIPAddress(boolean useIPv4) {
@@ -142,5 +143,26 @@ public class Utils {
 
 			return null;
 		}
+	}
+
+
+	public static long timeDiffrent(String dateStart, String dateStop) {
+		// Custom date format
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		Date d1 = null;
+		Date d2 = null;
+		try {
+			d1 = format.parse(dateStart);
+			d2 = format.parse(dateStop);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+// Get msec from each, and subtract.
+		long diff = d2.getTime() - d1.getTime();
+		long diffSeconds = diff / 1000 % 60;
+		long diffMinutes = diff / (60 * 1000) % 60;
+		return (diffMinutes * 60) + diffSeconds;
 	}
 }

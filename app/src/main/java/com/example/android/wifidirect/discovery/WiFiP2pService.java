@@ -8,10 +8,11 @@ import android.net.wifi.p2p.WifiP2pDevice;
  */
 public class WiFiP2pService {
 	public WifiP2pDevice device;
-	public String instanceName = null;
-	public String serviceRegistrationType = null;
-	private double intention;
-	public String PassPhrase=null;
+	public String instanceName = "";
+	public String serviceRegistrationType = "";
+	private double intention = 0;
+	public String SSID = "";
+	public String PassPhrase = "";
 
 	public double getIntention() {
 		return intention;

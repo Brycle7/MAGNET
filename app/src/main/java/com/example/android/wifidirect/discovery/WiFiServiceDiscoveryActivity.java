@@ -86,7 +86,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
     public static final int DELIVER_MESSAGE = 0x400 + 7;            // Reserved Code for Message Handler
     public static final int TEST_GROUP_CONNECTION = 0x400 + 8;      // Reserved Code for Message Handler
 
-    public static final int waitcoeff = 600;                        // Waiting time will be multiply by this coefficient (milliseconds)
+    public static final int waitcoeff = 1000;                        // Waiting time will be multiply by this coefficient (milliseconds)
     //public static final int SERVER_PORT = 4545;                     // Server port is the same in GroupOwnerSocketHandler
     //Device Status
     public static final int CONNECTED = 0;
@@ -144,8 +144,8 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
     private Random r = new Random();
     public String cGroupSSID = "";                                   // current group SSId if this device is group owner
     private String currentAPSSID = "";                               // current SSID that this client is connected to
-    private HashMap<String, String> SSIDPassMap;                     // SSID <=> NetworkPASS fir AP connection
-    private List<String> permittedMacAddressList;
+    private HashMap<String, String> SSIDPassMap;                   // SSID <=> NetworkPASS fir AP connection
+    // private List<String> permittedMacAddressList;
     private boolean forcedCreateGroup = false;
     private boolean isWifiConnected = false;
     private boolean threadAlreadyCreated = false;
@@ -160,8 +160,8 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
     private static boolean p2pNotDetected = true;
     private List<Long> alreadyForwarded = new ArrayList<Long>();
 
-    private final String testNum = "Test6";
-    private final String testExplanation = "A test with better logging with more details";
+    private static final String testNum = "Test16";
+    private static final String testExplanation = "Last test";
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     // Normally everything can be initialized on onCreate method
@@ -191,20 +191,38 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
         directAPList = new ArrayList<ScanResultMagnet>();
         SSIDPassMap = new HashMap<String, String>();
         listFragmentService = new ArrayList<WiFiP2pService>();
-        permittedMacAddressList = new ArrayList<String>();
+        //permittedMacAddressList = new ArrayList<String>();
 
-        SSIDPassMap.put("DIRECT-5w-Android_617d", "2Bdy7Szx");        //b6:ce:f6:08:ca:a2
-        SSIDPassMap.put("DIRECT-OF-Android_1e9b", "7ycL6HM2");        //b6:ce:f6:09:7c:49
-        SSIDPassMap.put("DIRECT-bX-Galaxy S4", "naPzu5qL");           //42:0E:85:4A:3E:0F
-        SSIDPassMap.put("DIRECT-0b-Android_4a1d", "tuG3BaAi");        //b6:ce:f6:08:c9:da
-        SSIDPassMap.put("DIRECT-DG-Galaxy S6 edge", "SOFZmpaD");      //EA:50:8B:F0:24:AD
-        SSIDPassMap.put("DIRECT-U7-Android_640f", "mPo0M6ed");        //52:2e:5c:e5:1a:02
-        SSIDPassMap.put("DIRECT-fX-Android_5f6f", "UeWZXmHp");        //ce:3a:61:ba:7f:bb
-        SSIDPassMap.put("DIRECT-sK-Android_64e6", "Bu5fm8DF");        //b6:ce:f6:df:39:a7
-        SSIDPassMap.put("DIRECT-qW-XT1068_f06b", "wA7TELSo");         //9c:d9:17:6c:e8:84
-        SSIDPassMap.put("DIRECT-4w-Galaxy S4 d0tted", "Y0w7bO8F");    //ce:3a:61:b7:51:28
-        SSIDPassMap.put("DIRECT-Ny-Galaxy S4", "EgphMFQb");           //42:0e:85:4a:3e:0f
-
+        SSIDPassMap.put("DIRECT-5w-Android_617d", "2Bdy7Szx");              //b6:ce:f6:08:ca:a2
+        SSIDPassMap.put("DIRECT-OF-Android_1e9b", "7ycL6HM2");              //b6:ce:f6:09:7c:49
+        SSIDPassMap.put("DIRECT-bX-Galaxy S4", "naPzu5qL");                 //42:0E:85:4A:3E:0F
+        SSIDPassMap.put("DIRECT-0b-Android_4a1d", "tuG3BaAi");              //b6:ce:f6:08:c9:da
+        SSIDPassMap.put("DIRECT-DG-Galaxy S6 edge", "SOFZmpaD");            //EA:50:8B:F0:24:AD
+        SSIDPassMap.put("DIRECT-U7-Android_640f", "mPo0M6ed");              //52:2e:5c:e5:1a:02
+        SSIDPassMap.put("DIRECT-fX-Android_5f6f", "UeWZXmHp");              //ce:3a:61:ba:7f:bb
+        SSIDPassMap.put("DIRECT-sK-Android_64e6", "Bu5fm8DF");              //b6:ce:f6:df:39:a7
+        SSIDPassMap.put("DIRECT-qW-XT1068_f06b", "wA7TELSo");               //9c:d9:17:6c:e8:84
+        SSIDPassMap.put("DIRECT-4w-Galaxy S4 d0tted", "Y0w7bO8F");          //ce:3a:61:b7:51:28
+        SSIDPassMap.put("DIRECT-Ny-Galaxy S4", "EgphMFQb");                 //42:0e:85:4a:3e:0f
+        SSIDPassMap.put("DIRECT-yX-Naser Derakhshan (Gala", "5VOPhw38");    //
+        SSIDPassMap.put("DIRECT-4w-Galaxy Tab 4", "D3jDVT1C");              //
+        SSIDPassMap.put("DIRECT-dD-SM-T533", "loBzcifn");                   //
+        SSIDPassMap.put("DIRECT-Gg-Galaxy Tab 4", "mAerx6BI");              //
+        SSIDPassMap.put("DIRECT-IK-Galaxy Tab 4_2", "vChORb0T");            //
+        SSIDPassMap.put("DIRECT-AT-Galaxy Tab 4", "UMFkG4vk");              //b2:df:3a:82:04:1e
+        SSIDPassMap.put("DIRECT-2F-Galaxy Tab 4", "2Ciomxkd");              //b2:df:3a:82:01:a2
+        SSIDPassMap.put("DIRECT-Hc-Galaxy Tab 4_1", "x7negLcq");       //b2:df:3a:82:0d:d2
+        SSIDPassMap.put("DIRECT-8v-Naser Derakhshan (Gala", "545ZaFYr");         //b2:df:3a:82:06:62
+        SSIDPassMap.put("DIRECT-me-Naser Derakhshan (Gala", "eZPCcUVG");    //02:12:36:29:59:1d
+        SSIDPassMap.put("DIRECT-90-Galaxy Note 10.1", "l8prf0iY");           //96:d7:71:e2:9c:fc
+        SSIDPassMap.put("DIRECT-hX-Galaxy Tab4654", "jeu0EhDY");        //aa:7c:01:ea:ab:42
+        SSIDPassMap.put("DIRECT-Uv-Galaxy Tab4", "5jaJVJK3");        //aa:7c:01:ea:aa:f8
+        SSIDPassMap.put("DIRECT-B5-Galaxy Note 10.1", "j9qSOq8U");           //4e:a5:6d:3e:e1:40
+        SSIDPassMap.put("DIRECT-Eu-SM-P605", "REgZZAWT");        //02:12:36:fe:ef:d2
+        SSIDPassMap.put("DIRECT-Xj-Galaxy Tab 45", "EF5CPqqS");      //36:be:00:ac:eb:c0
+        SSIDPassMap.put("DIRECT-CD-SM-P605", "06cizS2K");        //96:d7:71:e2:9c:be
+        SSIDPassMap.put("DIRECT-hn-SM-P605", "ihHKVLMi");        //4e:a5:6d:3e:e1:48
+/*
         permittedMacAddressList.add("b6:ce:f6:08:ca:a2");
         permittedMacAddressList.add("b6:ce:f6:09:7c:49");
         permittedMacAddressList.add("42:0E:85:4A:3E:0F");
@@ -216,7 +234,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
         permittedMacAddressList.add("9c:d9:17:6c:e8:84");
         permittedMacAddressList.add("ce:3a:61:b7:51:28");
         permittedMacAddressList.add("42:0e:85:4a:3e:0f");
-
+*/
         statusTxtView = (TextView) findViewById(R.id.status_text);     // Status text at the bottom of main activity
         statusTxtView.setMovementMethod(new ScrollingMovementMethod());// making Status text view scrollable
         statusTxtView.setScrollbarFadingEnabled(false);                // Set the Scroll bar visible all the time
@@ -246,14 +264,14 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
             if (i.SSID != null) {
                 if (i.SSID.contains("DIRECT")) {
                     wifiManager.removeNetwork(i.networkId);
-                    appendStatus(i.SSID + " removed!");
+                    // appendStatus(i.SSID + " removed!");
                 }
             }
         }
 
         // Configure the Intention and WPS in wifi P2P
         config.groupOwnerIntent = 8 + r.nextInt(6);
-        appendStatus("GO Intent: " + config.groupOwnerIntent);
+        // appendStatus("GO Intent: " + config.groupOwnerIntent);
         config.wps.setup = WpsInfo.PBC;
 
         p2pMacAddress = Utils.getMACAddress("p2p0");
@@ -273,7 +291,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
         FileWriter fileLogWriter;
         try {
             fileLogWriter = new FileWriter(Environment.getExternalStorageDirectory().getPath() + "/Alarms/" + testNum + "/messageReceived" + ".txt", true);
-            fileLogWriter.write(testExplanation+  " Mac Address: " + p2pMacAddress   + "Device Model: "+ android.os.Build.MODEL + " API: " + Build.VERSION.RELEASE + "\n");
+            fileLogWriter.write(testExplanation + " Mac Address: " + p2pMacAddress + "Device Model: " + android.os.Build.MODEL + " API: " + Build.VERSION.RELEASE + "\n");
             fileLogWriter.flush();
             fileLogWriter.close();
         } catch (IOException e) {
@@ -282,7 +300,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
         try {
             fileLogWriter = new FileWriter(Environment.getExternalStorageDirectory().getPath() + "/Alarms/" + testNum + "/messageSent" + ".txt", true);
-            fileLogWriter.write(testExplanation +" Mac Address: " + p2pMacAddress   +"Device Model: "+ android.os.Build.MODEL + " API: " + Build.VERSION.RELEASE +  "\n");
+            fileLogWriter.write(testExplanation + " Mac Address: " + p2pMacAddress + "Device Model: " + android.os.Build.MODEL + " API: " + Build.VERSION.RELEASE + "\n");
             fileLogWriter.flush();
             fileLogWriter.close();
         } catch (IOException e) {
@@ -291,7 +309,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
         try {
             fileLogWriter = new FileWriter(Environment.getExternalStorageDirectory().getPath() + "/Alarms/" + testNum + "/wifiConnection" + ".txt", true);
-            fileLogWriter.write(testExplanation +" Mac Address: " + p2pMacAddress   +"Device Model: "+ android.os.Build.MODEL + " API: " + Build.VERSION.RELEASE +  "\n");
+            fileLogWriter.write(testExplanation + " Mac Address: " + p2pMacAddress + "Device Model: " + android.os.Build.MODEL + " API: " + Build.VERSION.RELEASE + "\n");
             fileLogWriter.flush();
             fileLogWriter.close();
         } catch (IOException e) {
@@ -300,7 +318,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
         try {
             fileLogWriter = new FileWriter(Environment.getExternalStorageDirectory().getPath() + "/Alarms/" + testNum + "/p2pConnection" + ".txt", true);
-            fileLogWriter.write(testExplanation +" Mac Address: " + p2pMacAddress   + "Device Model: "+ android.os.Build.MODEL + " API: " + Build.VERSION.RELEASE + "\n");
+            fileLogWriter.write(testExplanation + " Mac Address: " + p2pMacAddress + "Device Model: " + android.os.Build.MODEL + " API: " + Build.VERSION.RELEASE + "\n");
             fileLogWriter.flush();
             fileLogWriter.close();
         } catch (IOException e) {
@@ -356,7 +374,6 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                 aNewService.device = srcDevice;
                 aNewService.instanceName = instanceName;
                 aNewService.serviceRegistrationType = registrationType;
-                aNewService.setIntention(13);
                 listFragmentService.add(aNewService);
             }
         }
@@ -364,22 +381,19 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
             boolean deviceAv = false;
             for (WiFiP2pService service : listFragmentService) {
                 if (service.device.deviceAddress.equals(srcDevice.deviceAddress)) {
-                    if (service.PassPhrase != null) {
-                        service.device = srcDevice;
-                        service.instanceName = instanceName;
-                        service.serviceRegistrationType = registrationType;
-                        deviceAv = true;
-                        break;
-                    }
+                    service.device = srcDevice;
+                    service.SSID = instanceName;
+                    deviceAv = true;
+                    break;
+
                 }
             }
 
             if (!deviceAv) {
                 WiFiP2pService aNewService = new WiFiP2pService();
                 aNewService.device = srcDevice;
-                aNewService.instanceName = instanceName;
                 aNewService.serviceRegistrationType = registrationType;
-                aNewService.setIntention(13);
+                aNewService.SSID = instanceName;
                 listFragmentService.add(aNewService);
             }
         }
@@ -389,9 +403,6 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
     @Override
     public void onDnsSdTxtRecordAvailable(String fullDomainName, Map<String, String> record, WifiP2pDevice srcDevice) {
         if (record.get("Intention") != null) {
-            Log.d("Intentions", srcDevice.deviceName + " " + record.get("Intention"));
-            //appendStatus(srcDevice.deviceAddress + " Intention: " + record.get("Intention"));
-
             boolean deviceAv = false;
             for (WiFiP2pService service : listFragmentService) {
                 if (service.device.deviceAddress.equals(srcDevice.deviceAddress)) {
@@ -405,8 +416,6 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
             if (!deviceAv) {
                 WiFiP2pService aNewService = new WiFiP2pService();
                 aNewService.device = srcDevice;
-                aNewService.instanceName = null;
-                aNewService.serviceRegistrationType = null;
                 aNewService.setIntention(Double.parseDouble(record.get("Intention")));
                 listFragmentService.add(aNewService);
             }
@@ -425,8 +434,6 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
             if (!deviceAv) {
                 WiFiP2pService aNewService = new WiFiP2pService();
                 aNewService.device = srcDevice;
-                aNewService.instanceName = null;
-                aNewService.serviceRegistrationType = null;
                 aNewService.PassPhrase = record.get("PassPhrase");
                 listFragmentService.add(aNewService);
             }
@@ -477,8 +484,8 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
         delayHandlerResetDis.postDelayed(new Runnable() { // wait. if no device found after 20 seconds. Restart service discovery
             public void run() {
                 if (listFragmentService.isEmpty()) {
-                    appendStatus("Problem in Service Discovery!");
-                    appendStatus("Restarting Service Discovery...");
+                    // appendStatus("Problem in Service Discovery!");
+                    // appendStatus("Restarting Service Discovery...");
                     restartServiceDiscovery();
                 }
                 delayHandlerResetDis.postDelayed(this, 60000);
@@ -494,6 +501,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                         @Override
                         public void onSuccess() {
                             config.deviceAddress = proximityGroupList.get(0).deviceAddress;
+                            Collections.shuffle(proximityGroupList);
                             manager.connect(channel, config, new ActionListener() {
                                 @Override
                                 public void onSuccess() {
@@ -502,7 +510,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
                                 @Override
                                 public void onFailure(int i) {
-                                    appendStatus("Failed to connect to another group. Restarting service discovery");
+                                    // appendStatus("Failed to connect to another group. Restarting service discovery");
                                     restartServiceDiscovery();
                                 }
                             });
@@ -510,59 +518,60 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
                         @Override
                         public void onFailure(int i) {
-                            appendStatus("Failed to remove Group. Still the GO");
+                            //  appendStatus("Failed to remove Group. Still the GO");
                         }
                     });
 
                 } else if (isGroupOwner && groupedPeerList.isEmpty() && proximityGroupList.isEmpty()) {
                     restartServiceDiscovery();
                 }
-                delayHandlerZeroClient.postDelayed(this, 200000);
+                delayHandlerZeroClient.postDelayed(this, 50000);
             }
-        }, 200000);
+        }, 50000);
 
-        // DRequest Client AP List every 30 Seconds
-        delayHandlerRclientAPList.postDelayed(new Runnable() { // Decide to connect to another groups every 39 seconds
+        // DRequest Client AP List every 10 Seconds
+        delayHandlerRclientAPList.postDelayed(new Runnable() {
             public void run() {
                 if (isGroupOwner && !groupedPeerList.isEmpty()) {
                     requestClientApList();
-                    // Decision Making to connect to external groups after 10 seconds of AP List request
-                    delayHandlerDecisionMaking.postDelayed(new Runnable() {
-                        public void run() {
-                            if (isGroupOwner && !WTAList.isEmpty()) {
-                                HashMap<String, String> theDecisionResult = decideGroupConnection(WTAList);
-                                for (HashMap.Entry<String, String> entry : theDecisionResult.entrySet()) {
-                                    String clientMAC = entry.getKey();
-                                    String apSSID = entry.getValue();
-
-                                    magnetMessage newMessage = new magnetMessage(ALCON_AP_CONNECTION, apSSID, " ", p2pMacAddress, clientMAC);
-                                    if (dataGramSender == null) {
-                                        dataGramSender = new DataGramSender(8027, broadcastAddress);
-                                        dataGramSender.start();
-                                    }
-
-                                    dataGramSender.setMsg(newMessage);
-                                    appendStatus("A command to connect to:" + apSSID + " sent to: " + clientMAC);
-                                }
-                            }
-                        }
-                    }, 10000);
                 }
-                delayHandlerRclientAPList.postDelayed(this, 30000);
-            }
-        }, 30000);
-
-        // Send Test Message every 10 seconds
-        delayHandlerTestMessage.postDelayed(new Runnable() { // Decide to connect to another groups every 39 seconds
-            public void run() {
-                if (isConnected || isWifiConnected) {
-                    for (String address : permittedMacAddressList) {
-                        sendMessage(Utils.getCurrentTimeStamp(), address);
-                    }
-                }
-                delayHandlerTestMessage.postDelayed(this, 10000);
+                delayHandlerRclientAPList.postDelayed(this, 10000);
             }
         }, 10000);
+
+        // Decision Making to connect to external groups after 25 seconds of AP List request
+        delayHandlerDecisionMaking.postDelayed(new Runnable() {
+            public void run() {
+                if (isGroupOwner && !WTAList.isEmpty()) {
+
+                    HashMap<String, String> theDecisionResult = decideGroupConnection(WTAList);
+                    appendStatus("Decision Making at Group Owner. WTA size: " + WTAList.size() + " Result Size: " + theDecisionResult);
+                    for (HashMap.Entry<String, String> entry : theDecisionResult.entrySet()) {
+                        String clientMAC = entry.getKey();
+                        String apSSID = entry.getValue();
+
+                        magnetMessage newMessage = new magnetMessage(ALCON_AP_CONNECTION, apSSID, " ", p2pMacAddress, clientMAC);
+                        if (dataGramSender == null) {
+                            dataGramSender = new DataGramSender(8027, broadcastAddress);
+                            dataGramSender.start();
+                        }
+                        dataGramSender.setMsg(newMessage);
+                        appendStatus("A command to connect to:" + apSSID + " sent to: " + clientMAC);
+                    }
+                }
+                delayHandlerDecisionMaking.postDelayed(this, 25000);
+            }
+        }, 25000);
+
+        // Send Test Message every 10 seconds
+        delayHandlerTestMessage.postDelayed(new Runnable() {
+            public void run() {
+                if (isConnected || isWifiConnected) {
+                    sendMessage(Utils.getCurrentTimeStamp(), "BROADCAST");
+                }
+                delayHandlerTestMessage.postDelayed(this, 15000);
+            }
+        }, 15000);
     }
 
     // This method actually will be called when the related view has been clicked on the fragment.
@@ -587,9 +596,9 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                 @Override
                 public void onPeersAvailable(WifiP2pDeviceList peers) {
                     updatePeerLists(peers);
-                    appendStatus("This device has the highest Intention");
+                    //appendStatus("This device has the highest Intention");
                     if (!isConnected && proximityGroupList.isEmpty()) {   // IF this device is not connected and there is not any group around
-                        appendStatus("No Other groups; Creating a new group");
+                        //appendStatus("No Other groups; Creating a new group");
                         createGroup();
                     } else if (!isConnected) {
 
@@ -597,14 +606,15 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                         //Send request to joing to all available group owners
                         // for (WifiP2pDevice device : proximityGroupList) {
                         connecPeer(proximityGroupList.get(0).deviceAddress);
-                        appendStatus("Invitation sent to Group: " + proximityGroupList.get(0).deviceName);
+                        // appendStatus("Invitation sent to Group: " + proximityGroupList.get(0).deviceName);
+                        Collections.shuffle(proximityGroupList);
                         // }
                         //wait for couple of seconds and then check to see if it is connected. otherwise create a group
-                        appendStatus("waiting for connection: " + calculateWait() + " ms");
+                        //appendStatus("waiting for connection: " + calculateWait() + " ms");
                         delayHandler1.postDelayed(new Runnable() {
                             public void run() {
                                 if (!isConnected) {
-                                    appendStatus("All Requests failed; Creating a group");
+                                    //appendStatus("All Requests failed; Creating a group");
                                     createGroup();
                                 }
                             }
@@ -615,8 +625,8 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
         } else {
             //Not the highest Intention. It will wait and then check the group list for any
             // available groups and try to connect to the group owner of each group.
-            appendStatus("Not the highest Intention");
-            appendStatus("will wait for " + calculateWait() + " ms");
+            // appendStatus("Not the highest Intention");
+            // appendStatus("will wait for " + calculateWait() + " ms");
             delayHandler1.postDelayed(new Runnable() {
                 public void run() {
                     if (!isConnected) {
@@ -625,20 +635,21 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                             public void onPeersAvailable(WifiP2pDeviceList peers) {
                                 updatePeerLists(peers);
                                 if (!proximityGroupList.isEmpty() && !isConnected) {                // if there are some groups around send request to join
-                                    appendStatus("Invitation sent to Group: " + proximityGroupList.get(0).deviceName);
+                                    // appendStatus("Invitation sent to Group: " + proximityGroupList.get(0).deviceName);
                                     connecPeer(proximityGroupList.get(0).deviceAddress);
-                                    appendStatus("Wait for GO response: " + calculateWait() + " ms");
+                                    Collections.shuffle(proximityGroupList);
+                                    // appendStatus("Wait for GO response: " + calculateWait() + " ms");
                                     delayHandler2.postDelayed(new Runnable() { // wait. if not connected after sending request to all groups, create a group
                                         public void run() {
                                             if (!isConnected) {
-                                                appendStatus("All Requests failed; Creating a group");
+                                                // appendStatus("All Requests failed; Creating a group");
                                                 createGroup();
                                             }
                                         }
                                     }, calculateWait());
                                 } else if (proximityGroupList.isEmpty() && !isConnected) {
                                     // if there is not any group, restart service discovery and check again to be sure that there is not any groups available
-                                    appendStatus("No Other groups; creating group");
+                                    // appendStatus("No Other groups; creating group");
                                     createGroup();
                                 }
                             }
@@ -661,12 +672,12 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
             @Override
             public void onSuccess() {
-                appendStatus("Group Created Successfully!");
+                // appendStatus("Group Created Successfully!");
             }
 
             @Override
             public void onFailure(int reason) {
-                appendStatus("Failed to create a group: " + desError(reason));
+                // appendStatus("Failed to create a group: " + desError(reason) + " Try Again!");
                 manager.requestPeers(channel, new WifiP2pManager.PeerListListener() {
                     @Override
                     public void onPeersAvailable(WifiP2pDeviceList peers) {
@@ -677,7 +688,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                                 public void run() {
                                     WiFiP2pService newService = new WiFiP2pService();
                                     newService.instanceName = "MAGNET";
-                                    appendStatus("SMART selected= true");
+                                    // appendStatus("SMART selected= true");
                                     connectP2p(newService);
                                 }
                             }, calculateWait());
@@ -695,12 +706,12 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
         manager.connect(channel, config, new ActionListener() {
             @Override
             public void onSuccess() {
-                appendStatus("Connection Request Sent to: " + config.deviceAddress);
+                // appendStatus("Connection Request Sent to: " + config.deviceAddress);
             }
 
             @Override
             public void onFailure(int errorCode) {
-                appendStatus("Failed to send connection request:" + config.deviceAddress + desError(errorCode));
+                // appendStatus("Failed to send connection request:" + config.deviceAddress + desError(errorCode));
             }
         });
         // }
@@ -719,15 +730,15 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
             case OBJECT_READ:
 
                 magnetMessage magnetmessage = (magnetMessage) msg.obj;
-                appendStatus("A message object received: " + magnetmessage.receiverMAC);
+                // appendStatus("A message object received: " + magnetmessage.receiverMAC);
 
                 if (magnetmessage.senderMAC.equals(p2pMacAddress)) {
-                    appendStatus("discarding self message");
+                    // appendStatus("discarding self message");
                     break;
                 }
 
                 if (!(magnetmessage.receiverMAC.equals(p2pMacAddress) || magnetmessage.receiverMAC.equals(wifiMacAddress) || magnetmessage.receiverMAC.equals("BROADCAST") || magnetmessage.what == DELIVER_MESSAGE)) {
-                    appendStatus("Message destination is not me!");
+                    // appendStatus("Message destination is not me!");
                     /*if (!isGroupOwner && isConnected && isWifiConnected) {
                         // this is a bridge - forward the message
                         appendStatus("Bridging the message...");
@@ -749,7 +760,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                 // if this is a request from group owner for access point list which could be see by this client
                 // Start WiFi Scan and send back the fresh result
                 if (magnetmessage.what == ALCON_APLIST_REQUEST) {
-                    appendStatus("Updating WiFi APs...");
+                    //appendStatus("Updating WiFi APs...");
                     apListReByMac = magnetmessage.senderMAC;
                     apListRequested = true;
                     wifiManager.startScan();
@@ -767,7 +778,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                         }
                     }
 
-                    appendStatus("Direct found as: " + " Devices IP: " + magnetmessage.senderIP + "\n" + APDList);
+                    appendStatus("Direct found as: " + " Devices IP: " + magnetmessage.senderIP + "\n" + APDList.size());
                     WTAClass newWTA = new WTAClass(magnetmessage.senderMAC);
                     newWTA.interfaceIP = magnetmessage.senderIP;
                     newWTA.setGroupSeen(APDList);
@@ -775,7 +786,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
                     // if this is a command from group owner to this client to connect to an access point
                 } else if (magnetmessage.what == ALCON_AP_CONNECTION) {
-                    appendStatus("AP Connection Request to: " + magnetmessage.object);
+                    appendStatus("AP Connection Request Sent to: " + magnetmessage.object);
                     final String networkSSID = (String) magnetmessage.object;
 
                     // check if this device has not already connected to the requested SSID
@@ -787,15 +798,16 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                         }
                     }
 
-                    if (networkSSID.contains("Galaxy S6") || networkSSID.contains("Galaxy S4 d0tted")) {
-                        appendStatus("PassPhrase need resolve");
-                        restartServiceDiscovery();
+                    //if (networkSSID.contains("Galaxy S6") || networkSSID.contains("Galaxy S4 d0tted")) {
+                    //appendStatus("PassPhrase need resolve");
+                    // here you should do something. we have a problem here. change the whole process it is rediculus
+                       /* restartServiceDiscovery();
                         delayHandlerPPresolve.postDelayed(new Runnable() { // wait 10 seconds for discovery to update serviceListFragment
                             public void run() {
                                 appendStatus("Trying to get PassPhrase");
                                 for (WiFiP2pService service : listFragmentService) {
-                                    if (service.instanceName.contains("SSID") && SubStringBetween.subStringBetween(service.instanceName, "SSID:", ":PassPhrase:").equals(networkSSID)) {
-                                        String networkPass = service.instanceName.substring(service.instanceName.indexOf("PassPhrase:") + 1, service.instanceName.length());
+                                    if (SubStringBetween.subStringBetween(service.SSID, "SSID:", ":PassPhrase:").equals(networkSSID)) {
+                                        String networkPass = service.SSID.substring(service.SSID.indexOf("PassPhrase:") + 1, service.SSID.length());
                                         appendStatus("PassPhrase Found in Service.name: " + networkPass);
                                         WifiConfiguration conf = new WifiConfiguration();
                                         conf.SSID = "\"" + networkSSID + "\"";
@@ -831,52 +843,73 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                                     }
                                 }
                             }
-                        }, 10000);
-                        break;
-                    } else {
-                        appendStatus("trying to connect to a known SSID");
-                        String networkPass = SSIDPassMap.get(networkSSID);
-                        WifiConfiguration conf = new WifiConfiguration();
-                        conf.SSID = "\"" + networkSSID + "\"";
-                        conf.preSharedKey = "\"" + networkPass + "\"";
-                        wifiManager.addNetwork(conf);
-                        List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
-                        for (WifiConfiguration i : list) {
-                            if (i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
-                                wifiManager.disconnect();
-                                wifiManager.enableNetwork(i.networkId, true);
-                                wifiManager.reconnect();
-                                break;
-                            }
+                        }, 10000);*/
+
+                    // }
+
+                    // Baseline test  ---- comment this and uncomment the above lines for real test
+                    appendStatus("trying to connect to a known SSID");
+                    String networkPass = SSIDPassMap.get(networkSSID);
+                    WifiConfiguration conf = new WifiConfiguration();
+                    conf.SSID = "\"" + networkSSID + "\"";
+                    conf.preSharedKey = "\"" + networkPass + "\"";
+                    wifiManager.addNetwork(conf);
+                    List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+                    for (WifiConfiguration i : list) {
+                        if (i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
+                            wifiManager.disconnect();
+                            wifiManager.enableNetwork(i.networkId, true);
+                            wifiManager.reconnect();
+                            break;
                         }
                     }
+                    break;
                 } else if (magnetmessage.what == TEST_GROUP_CONNECTION) {
-                    appendStatus(magnetmessage.object + " " + magnetmessage.senderMAC);
+                    // appendStatus(magnetmessage.object + " " + magnetmessage.senderMAC);
 
                 } else if (magnetmessage.what == DELIVER_MESSAGE) {
                     if (magnetmessage.receiverMAC.equals(p2pMacAddress) || magnetmessage.receiverMAC.equals(wifiMacAddress)) {
-                        appendStatus("A message Received from: " + magnetmessage.receiverMAC + " :: " + magnetmessage.object);
+                        // appendStatus("A message Received from: " + magnetmessage.senderMAC + " :: " + magnetmessage.object);
                         // Log the file with the time stamps
                         FileWriter fileLogMessage;
                         try {
                             fileLogMessage = new FileWriter(Environment.getExternalStorageDirectory().getPath() + "/Alarms/" + testNum + "/messageReceived" + ".txt", true);
-                            appendStatus(fileLogMessage.toString());
-                            fileLogMessage.write("Sent on: " + magnetmessage.object + " From: " + magnetmessage.senderMAC + "(" + magnetmessage.senderIP + ")" +
-                                    " Received on: " + Utils.getCurrentTimeStamp() + " On this Device: " + p2pMacAddress + "("+ magnetmessage.receiverMAC +")" +
+                            //  appendStatus(fileLogMessage.toString());
+                            fileLogMessage.write("Sent on: " + magnetmessage.object + " Received on: " + Utils.getCurrentTimeStamp() + " Delay: " + Utils.timeDiffrent((String) magnetmessage.object, Utils.getCurrentTimeStamp()) + " From: MAC: " + magnetmessage.senderMAC + " (IP: " + magnetmessage.senderIP + ") " +
+                                    " On this Device: " + p2pMacAddress + "(" + magnetmessage.receiverMAC + ")" +
                                     " ID: " + magnetmessage.messageID + " Number of hobs: " + magnetmessage.hopNum + " isGroupOwner: " + isGroupOwner + " isWiFiConnected: " + isWifiConnected +
-                                    " isConnected: " + isConnected + "\n");
+                                    " isP2PConnected: " + isConnected + "\n");
                             fileLogMessage.flush();
                             fileLogMessage.close();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    } else if (!alreadyForwarded.contains(magnetmessage.messageID)) {
-                        appendStatus("Forwarding the Message: " + alreadyForwarded.size());
+                    }
+                    if (magnetmessage.receiverMAC.equals("BROADCAST")) {
+                        // appendStatus("A message Received from: " + magnetmessage.senderMAC + " :: " + magnetmessage.object);
+                        // Log the file with the time stamps
+                        FileWriter fileLogMessage;
+                        try {
+                            fileLogMessage = new FileWriter(Environment.getExternalStorageDirectory().getPath() + "/Alarms/" + testNum + "/messageReceived" + ".txt", true);
+                            //appendStatus(fileLogMessage.toString());
+                            fileLogMessage.write("Sent on: " + magnetmessage.object + " Received on: " + Utils.getCurrentTimeStamp() + " Delay: " + Utils.timeDiffrent((String) magnetmessage.object, Utils.getCurrentTimeStamp()) +
+                                    " From: MAC: " + magnetmessage.senderMAC + " (IP: " + magnetmessage.senderIP + ") " +
+                                    " On this Device: " + p2pMacAddress + "(" + magnetmessage.receiverMAC + ")" +
+                                    " ID: " + magnetmessage.messageID + " Number of hobs: " + magnetmessage.hopNum + " isGroupOwner: " + isGroupOwner + " isWiFiConnected: " + isWifiConnected +
+                                    " isP2PConnected: " + isConnected + "\n");
+                            fileLogMessage.flush();
+                            fileLogMessage.close();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (!(magnetmessage.receiverMAC.equals(p2pMacAddress) || magnetmessage.receiverMAC.equals(wifiMacAddress)) && !alreadyForwarded.contains(magnetmessage.messageID)) {
+                        // appendStatus("Forwarding the Message: " + alreadyForwarded.size());
                         alreadyForwarded.add(magnetmessage.messageID);
                         magnetmessage.hopNum++;
                         // forward it to others
                         if (isGroupOwner) {
-                            appendStatus("Forward Message as GroupOwner");
+                            //  appendStatus("Forward Message as GroupOwner");
                             if (dataGramSender == null) {
                                 dataGramSender = new DataGramSender(8027, broadcastAddress);
                                 dataGramSender.start();
@@ -917,17 +950,17 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
         updatePeerLists(peers);
 
         // if we are the group owner we send the invitation to the newly found peer
-        if (isConnected && isGroupOwner) {
+       /* if (isConnected && isGroupOwner) {
             for (WifiP2pDevice device : peerList) {
                 if (device.status == AVAILABLE && !device.isGroupOwner()) {
                     connecPeer(device.deviceAddress);
                 }
             }
-        }
+        }*/
 
         if (!isConnected && !SMARTSelected) {
             SMARTSelected = true;
-            appendStatus("waiting for peer discovery: " + calculateWait() + " ms");
+            //  appendStatus("waiting for peer discovery: " + calculateWait() + " ms");
             delayHandler1.postDelayed(new Runnable() {
                 public void run() {
                     WiFiP2pService newService = new WiFiP2pService();
@@ -967,6 +1000,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
             if (device.isGroupOwner()) {
                 proximityGroupList.add(device);
             }
+            Collections.shuffle(proximityGroupList);
         }
     }
 
@@ -981,7 +1015,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
     // IF the device is connected, this method will be called
     @Override
     public void onConnectionInfoAvailable(WifiP2pInfo p2pInfo) {
-        appendStatus("Connection Info Changed" + p2pInfo.isGroupOwner);
+        // appendStatus("Connection Info Changed" + p2pInfo.isGroupOwner);
         isGroupFormed = p2pInfo.groupFormed;
         Thread udpReceiverThread;
 
@@ -993,7 +1027,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
         if (p2pInfo.isGroupOwner) {
             isGroupOwner = true;
-            appendStatus("Connected as group owner");
+            // appendStatus("Connected as group owner");
             /*try {
                 threadHandlerP2p = new GroupOwnerSocketHandler((this).getHandler(), SERVER_PORT);
                 threadHandlerP2p.start();
@@ -1023,8 +1057,9 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                         for (WifiP2pDevice sad : groupedPeerList) {
                             lineaddress = lineaddress + sad.deviceAddress + " -- ";
                         }
-                        fileLogConnectionP2P.write(Utils.getCurrentTimeStamp() + " P2P connection status: GroupOwner (" + p2pMacAddress + ") Number of Clients: " + groupedPeerList +
-                                " ChatClientListSize: " + chatClientList.size() + "(SSID: " + group.getNetworkName() + ")" + lineaddress + " isWiFiConnected: " + isWifiConnected + "\n");
+                        fileLogConnectionP2P.write(Utils.getCurrentTimeStamp() + " P2P connection status: GroupOwner (" + p2pMacAddress + ") Number of Clients: " + groupedPeerList.size() +
+                                " ChatClientListSize: " + chatClientList.size() + "(SSID: " + group.getNetworkName() + " --- Pass: " + group.getPassphrase() + ")" + " isWiFiConnected: " + isWifiConnected + " Lineaddress: "
+                                + lineaddress + "\n");
                         fileLogConnectionP2P.flush();
                         fileLogConnectionP2P.close();
                     } catch (IOException e) {
@@ -1040,13 +1075,13 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
                             @Override
                             public void onSuccess() {
-                                appendStatus("Added Local Service: " + "PassPhrase");
+                                //  appendStatus("Added Local Service: " + "PassPhrase");
                                 servicePasscreated = true;
                             }
 
                             @Override
                             public void onFailure(int error) {
-                                appendStatus("Failed to add a service: " + desError(error));
+                                //  appendStatus("Failed to add a service: " + desError(error));
                             }
                         });
                     }
@@ -1117,15 +1152,16 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                 udpReceiverThread = new DataGramReceiver(5050, this, getHandler()); //prova passare fragment
                 udpReceiverThread.start();
                 udpReceiverCreated = true;
-                appendStatus("GO UDP Receiver Created");
+                // appendStatus("GO UDP Receiver Created");
             }
 
             for (WifiP2pDevice device : peerList) {
                 if (device.status == AVAILABLE && !device.isGroupOwner()) { // Send invitations if it is available (not connected not invited) sometimes show unavailable by mistake
-                    appendStatus("GO: Invitation sent to client: " + device.deviceAddress);
+                    //  appendStatus("GO: Invitation sent to client: " + device.deviceAddress);
                     connecPeer(device.deviceAddress);
                 }
             }
+
             // if it is not a GO, run a client socket threadHandler
         } else if (isGroupFormed) {
             FileWriter fileLogConnectionP2P;
@@ -1146,7 +1182,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                 udpReceiverThread = new DataGramReceiver(8027, this, getHandler());
                 udpReceiverThread.start();
                 udpReceiverCreated = true;
-                appendStatus("Client UDP Receiver Created");
+                //appendStatus("Client UDP Receiver Created");
             }
         }
     }
@@ -1265,13 +1301,13 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
                         @Override
                         public void onFailure(int reasonCode) {
-                            appendStatus("Group cannot be Removed: " + desError(reasonCode));
+                            // appendStatus("Group cannot be Removed: " + desError(reasonCode));
                         }
 
                         @Override
                         public void onSuccess() {
                             Log.d("OnExit", "Remove group successfull");
-                            appendStatus("Group Removed");
+                            // appendStatus("Group Removed");
                         }
 
                     });
@@ -1282,12 +1318,12 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                             @Override
                             public void onSuccess() {
                                 Log.d("OnExit", "cancel connect successfull");
-                                appendStatus("Current Connection Terminated");
+                                // appendStatus("Current Connection Terminated");
                             }
 
                             @Override
                             public void onFailure(int arg0) {
-                                appendStatus("Current Connection not Terminated: " + desError(arg0));
+                                // appendStatus("Current Connection not Terminated: " + desError(arg0));
                             }
                         });
                     }
@@ -1296,12 +1332,12 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                         @Override
                         public void onSuccess() {
                             Log.d("OnExit", "Clear local services successfull");
-                            appendStatus("Local Services Cleared");
+                            // appendStatus("Local Services Cleared");
                         }
 
                         @Override
                         public void onFailure(int arg0) {
-                            appendStatus("Local Services not Cleared: " + desError(arg0));
+                            // appendStatus("Local Services not Cleared: " + desError(arg0));
                         }
                     });
                     manager.clearServiceRequests(channel, new ActionListener() {
@@ -1309,9 +1345,9 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                         @Override
                         public void onSuccess() {
                             Log.d("OnExit", "Clear service requests successful");
-                            appendStatus("All Service Requests Cleared");
+                            // appendStatus("All Service Requests Cleared");
                             unregisterReceiver(receiver);
-                            appendStatus("Receiver Unregistered");
+                            // appendStatus("Receiver Unregistered");
                             proximityGroupList.clear();                // Group ID   <=> Mac Address of GO
                             peerList.clear();                    // WifiP2pDevice of peers found in the proximity
                             groupedPeerList.clear();            // WifiP2pDevice of peers in the group
@@ -1330,7 +1366,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
                         @Override
                         public void onFailure(int arg0) {
-                            appendStatus("All Service Requests not Cleared: " + desError(arg0));
+                            //  appendStatus("All Service Requests not Cleared: " + desError(arg0));
                         }
                     });
                 }
@@ -1342,12 +1378,12 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
                         @Override
                         public void onFailure(int reasonCode) {
-                            appendStatus("Failed to remove the group: " + desError(reasonCode));
+                            //  appendStatus("Failed to remove the group: " + desError(reasonCode));
                         }
 
                         @Override
                         public void onSuccess() {
-                            appendStatus("Group Removed");
+                            // appendStatus("Group Removed");
                         }
                     });
                 }
@@ -1378,7 +1414,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                             dataGramSender.start();
                         }
                         dataGramSender.setMsg(message);
-                        appendStatus("Message Sent via UDP!");
+                        // appendStatus("Message Sent via UDP!");
                     }
                     if (P2pChatManager != null && P2pChatManager.socketIsConnected()) {
                         P2pChatManager.writeObject(message);
@@ -1397,12 +1433,12 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                     public void onSuccess() {
                         forcedCreateGroup = true;
                         createGroup();
-                        appendStatus("Group Removed Manually");
+                        // appendStatus("Group Removed Manually");
                     }
 
                     @Override
                     public void onFailure(int reason) {
-                        appendStatus("Cannot Remove the Group: " + desError(reason));
+                        // appendStatus("Cannot Remove the Group: " + desError(reason));
                     }
                 });
                 return true;
@@ -1447,7 +1483,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
         magnetMessage aMagnetMessage = new magnetMessage(ALCON_APLIST_REQUEST, "Salam", " ", p2pMacAddress, "BROADCAST");
         dataGramSender.setMsg(aMagnetMessage);
-        appendStatus("APList requested via UDP!");
+        // appendStatus("APList requested via UDP!");
     }
 
     // Clearing the service requests and start a fresh discovery
@@ -1459,50 +1495,50 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
             @Override
             public void onSuccess() {
-                appendStatus("Peer Discovery Stopped!");
+                // appendStatus("Peer Discovery Stopped!");
                 manager.clearServiceRequests(channel, new ActionListener() {
 
                     @Override
                     public void onSuccess() {
 
-                        appendStatus("All Service Requests Cleared");
+                        // appendStatus("All Service Requests Cleared");
                         //serviceRequest = WifiP2pDnsSdServiceRequest.newInstance();
                         manager.addServiceRequest(channel, serviceRequest, new ActionListener() {
 
                             @Override
                             public void onSuccess() {
-                                appendStatus("Added service discovery request");
+                                // appendStatus("Added service discovery request");
                                 manager.discoverServices(channel, new ActionListener() {
 
                                     @Override
                                     public void onSuccess() {
-                                        appendStatus("Service discovery initiated");
+                                        //  appendStatus("Service discovery initiated");
                                     }
 
                                     @Override
                                     public void onFailure(int arg0) {
-                                        appendStatus("Service discovery failed: " + desError(arg0));
+                                        //  appendStatus("Service discovery failed: " + desError(arg0));
                                     }
                                 });
                             }
 
                             @Override
                             public void onFailure(int arg0) {
-                                appendStatus("Failed adding service discovery request: " + desError(arg0));
+                                //  appendStatus("Failed adding service discovery request: " + desError(arg0));
                             }
                         });
                     }
 
                     @Override
                     public void onFailure(int arg0) {
-                        appendStatus("All Service Requests not Cleared: " + desError(arg0));
+                        //appendStatus("All Service Requests not Cleared: " + desError(arg0));
                     }
                 });
             }
 
             @Override
             public void onFailure(int reason) {
-                appendStatus("Failed to stop discovery: " + desError(reason));
+                //  appendStatus("Failed to stop discovery: " + desError(reason));
 
             }
 
@@ -1625,7 +1661,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                 }
             }
         }
-        appendStatus("List all external Groups: " + "/n" + groupsInInterfaceList);
+        // appendStatus("List all external Groups: " + "/n" + groupsInInterfaceList);
         Log.d("finalResult", "List all external Groups: " + "/n" + groupsInInterfaceList);
         // Find possible solutions by passing the tree to the findNodeDFS method
         List<HashMap<String, String>> finalResult = findNodeDFS(root);
@@ -1656,7 +1692,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
         }
 
         // For now for simplicity we only send back one possible choice
-        appendStatus(finalResult.toString());
+        // appendStatus(finalResult.toString());
         return finalResult.get(0);
 
 		/*if(finalResult.size()>1) {
@@ -1771,7 +1807,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @Override
     public void onChannelDisconnected() {
-        appendStatus("channel disconnected; trying to reconnect");
+        // appendStatus("channel disconnected; trying to reconnect");
         channel = manager.initialize(this, getMainLooper(), this);
     }
 
@@ -1791,7 +1827,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
 
         if (isConnected) { // if true
             appendStatus("Connected!");
-            appendStatus("My P2P IP: " + getIpAddress());
+            //appendStatus("My P2P IP: " + getIpAddress());
             alreadyConnected = true;
         } else {          // if false
             appendStatus("Disconnected");
@@ -1810,27 +1846,27 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                 udpReceiverThread.interrupt();
                 udpReceiverThread = null;
                 udpReceiverCreated = false;
-                appendStatus("Previous UDP Receiver Deleted");
+                //("Previous UDP Receiver Deleted");
             }
             if (dataGramSender != null) {
                 dataGramSender.running = false;
                 dataGramSender = null;
-                appendStatus("Previous DataGramSender Deleted");
+                // appendStatus("Previous DataGramSender Deleted");
             }
             if (servicePasscreated) {
                 manager.removeLocalService(channel, serviceSSIDPass, null);
                 servicePasscreated = false;
-                appendStatus("PassPhrase Service remove due to disconnection");
+                //appendStatus("PassPhrase Service remove due to disconnection");
             }
 
             //Restart Discovery only if the disconnection was not requested by the user and we had already connected
             if (alreadyConnected && !appTerminate) {
                 alreadyConnected = false;
-                appendStatus("wait before restarting service discovery: 3000 ms");
+                //appendStatus("wait before restarting service discovery: 3000 ms");
                 delayHandler3.postDelayed(new Runnable() { // wait. if not connected restart service discovery
                     public void run() {
                         if (!isConnected) {
-                            appendStatus("Restarting service Discovery");
+                            // appendStatus("Restarting service Discovery");
                             restartServiceDiscovery();
                         }
                     }
@@ -1874,7 +1910,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
             try {
                 fileLogConnectionWifi = new FileWriter(Environment.getExternalStorageDirectory().getPath() + "/Alarms/" + testNum + "/wifiConnection" + ".txt", true);
                 fileLogConnectionWifi.write(Utils.getCurrentTimeStamp() + " W-Fi connection status: IsConnected:" + isWifiConnected + " SSID: " + wifiinfo.getSSID() + " isGroupOwner: " +
-                        isGroupOwner + " isConnected: " + isConnected + " CurrentGroupSSID: " + currentAPSSID+ "\n");
+                        isGroupOwner + " isConnected: " + isConnected + " CurrentGroupSSID: " + currentAPSSID + "\n");
                 fileLogConnectionWifi.flush();
                 fileLogConnectionWifi.close();
             } catch (IOException e) {
@@ -1897,7 +1933,7 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
                 if (legacyHandler != null) {
                     legacyHandler.interrupt();
                     legacyHandler = null;
-                    appendStatus("Previous LegacyHandler Deleted");
+                    // appendStatus("Previous LegacyHandler Deleted");
                 }
             }
         }
@@ -2088,11 +2124,13 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
         FileWriter fileLogMessageSent;
         try {
             fileLogMessageSent = new FileWriter(Environment.getExternalStorageDirectory().getPath() + "/Alarms/" + testNum + "/messageSent" + ".txt", true);
-            fileLogMessageSent.write("Sent on: " + Utils.getCurrentTimeStamp() + " ID: " + newMessage.messageID + "\n");
+            fileLogMessageSent.write("Sent on: " + Utils.getCurrentTimeStamp() + " ID: " + newMessage.messageID +
+                    " From: MAC: " + newMessage.senderMAC + " (" + newMessage.senderIP + ") " + " To: MAC: " + newMessage.receiverMAC + "\n");
             fileLogMessageSent.flush();
             fileLogMessageSent.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

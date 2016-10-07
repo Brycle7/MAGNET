@@ -1,8 +1,6 @@
 -- Merging decision tree log ---
 manifest
 ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml:2:1-61:12
-	xmlns:android
-		ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml:2:11-69
 	package
 		ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml:3:5-55
 		INJECTED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml
@@ -15,6 +13,8 @@ ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app
 		ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml:4:5-28
 		INJECTED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml:7:5-9:41
 	android:targetSdkVersion
@@ -107,10 +107,10 @@ ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app
 		ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml:44:13-40
 meta-data#android.support.PARENT_ACTIVITY
 ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml:47:13-49:105
-	android:name
-		ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml:48:17-63
 	android:value
 		ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml:49:17-102
+	android:name
+		ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml:48:17-63
 activity#com.example.android.wifidirect.discovery.IntentionProc
 ADDED from C:\Users\Naser\AndroidStudioProjects\WiFiServiceDiscoveryActivity\app\src\main\AndroidManifest.xml:51:9-58:20
 	android:label

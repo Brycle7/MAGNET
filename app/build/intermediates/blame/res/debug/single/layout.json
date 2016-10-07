@@ -1,19 +1,19 @@
 [
     {
-        "merged": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
-        "source": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\src\\main\\res\\layout\\main.xml"
+        "merged": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\build\\intermediates\\res\\merged\\debug\\layout\\devices_list.xml",
+        "source": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\src\\main\\res\\layout\\devices_list.xml"
     },
     {
-        "merged": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_chat.xml",
-        "source": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\src\\main\\res\\layout\\fragment_chat.xml"
+        "merged": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
+        "source": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\src\\main\\res\\layout\\main.xml"
     },
     {
         "merged": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_intention_proc.xml",
         "source": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\src\\main\\res\\layout\\activity_intention_proc.xml"
     },
     {
-        "merged": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\build\\intermediates\\res\\merged\\debug\\layout\\devices_list.xml",
-        "source": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\src\\main\\res\\layout\\devices_list.xml"
+        "merged": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\build\\intermediates\\res\\merged\\debug\\layout\\fragment_chat.xml",
+        "source": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\src\\main\\res\\layout\\fragment_chat.xml"
     },
     {
         "merged": "C:\\Users\\Naser\\AndroidStudioProjects\\WiFiServiceDiscoveryActivity\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_device_info.xml",

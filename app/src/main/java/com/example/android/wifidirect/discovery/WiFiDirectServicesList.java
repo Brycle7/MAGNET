@@ -26,7 +26,7 @@ public class WiFiDirectServicesList extends ListFragment {
 	WiFiDevicesAdapter listAdapter = null;
 
 	interface DeviceClickListener {
-		public void connectP2p(WiFiP2pService wifiP2pService);
+		void connectP2p(WiFiP2pService wifiP2pService);
 	}
 
 	@Override
@@ -94,7 +94,7 @@ public class WiFiDirectServicesList extends ListFragment {
 					statusText.setText("Status: " + getDeviceStatus(service.device.status) + " Intention: " + service.getIntention()+ " Pass: " + service.PassPhrase);
 				}else{
 					statusText.setTextColor(Color.GRAY);
-					statusText.setText("Status: " + getDeviceStatus(service.device.status) + " Intention: " + service.getIntention()+ " Pass: " + service.PassPhrase);
+					statusText.setText("Status: " + getDeviceStatus(service.device.status) + " Intention: " + service.getIntention() + " Pass: " + service.PassPhrase);
 				}
 			}
 			return v;
