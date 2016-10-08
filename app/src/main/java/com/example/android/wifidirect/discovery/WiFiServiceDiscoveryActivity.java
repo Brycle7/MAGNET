@@ -257,6 +257,9 @@ public class WiFiServiceDiscoveryActivity extends Activity implements DeviceClic
             wifiManager.setWifiEnabled(true);
         }
 
+        // Wi-Fi Direct Auto Accept authentication (Only PBC supported)
+        WifiDirectAutoAccept wdAutoAccept = new WifiDirectAutoAccept(manager, channel);
+        wdAutoAccept.intercept(true);
 
         // remove the previous list of configured Direct AP networks
         List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
